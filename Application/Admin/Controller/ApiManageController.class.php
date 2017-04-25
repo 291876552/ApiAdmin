@@ -10,7 +10,6 @@ namespace Admin\Controller;
 
 class ApiManageController extends BaseController {
     public function index() {
-    	//添加排序 //add by wkj 2017-03-18
         $list = D('ApiList')->order('id asc')->select();
         $this->assign('list', $list);
         $this->display();
@@ -28,6 +27,9 @@ class ApiManageController extends BaseController {
             }
         }elseif( IS_POST ) {
             $data = I('post.');
+            if( $data['id'] == 1 ){
+                $this->ajaxError('关键数据，禁止操作');
+            }
             $res = D('ApiList')->where(array('id' => $data['id']))->save($data);
             if( $res === false ) {
                 $this->ajaxError('操作失败');
@@ -56,6 +58,9 @@ class ApiManageController extends BaseController {
     public function open() {
         if( IS_POST ) {
             $id = I('post.id');
+            if( $id == 1 ){
+                $this->ajaxError('关键数据，禁止操作');
+            }
             if( $id ) {
                 D('ApiList')->open(array('id' => $id));
                 $this->ajaxSuccess('操作成功');
@@ -68,6 +73,9 @@ class ApiManageController extends BaseController {
     public function close() {
         if( IS_POST ) {
             $id = I('post.id');
+            if( $id == 1 ){
+                $this->ajaxError('关键数据，禁止操作');
+            }
             if( $id ) {
                 D('ApiList')->close(array('id' => $id));
                 $this->ajaxSuccess('操作成功');
@@ -80,6 +88,9 @@ class ApiManageController extends BaseController {
     public function del() {
         if( IS_POST ) {
             $id = I('post.id');
+            if( $id == 1 ){
+                $this->ajaxError('关键数据，禁止操作');
+            }
             if( $id ) {
                 D('ApiList')->del(array('id' => $id));
                 $this->ajaxSuccess('操作成功');

@@ -56,6 +56,9 @@ class FieldsManageController extends BaseController {
     public function add() {
         if (IS_POST) {
             $data = I('post.');
+            if( $data['hash'] == '58feec00daad5' ){
+                $this->ajaxError('关键数据，禁止操作');
+            }
             $data['fieldName'] = $data['showName'];
             $res = D('ApiFields')->add($data);
             if ($res === false) {
@@ -73,6 +76,9 @@ class FieldsManageController extends BaseController {
         if (IS_POST) {
             $data = I('post.');
             $data['fieldName'] = $data['showName'];
+            if( $data['hash'] == '58feec00daad5' ){
+                $this->ajaxError('关键数据，禁止操作');
+            }
             $res = D('ApiFields')->where(array('id' => $data['id']))->save($data);
             if ($res === false) {
                 $this->ajaxError('操作失败');
@@ -93,6 +99,9 @@ class FieldsManageController extends BaseController {
     public function del() {
         if (IS_POST) {
             $id = I('post.id');
+            if( $id <= 8 ){
+                $this->ajaxError('关键数据，禁止操作');
+            }
             if ($id) {
                 D('ApiFields')->where(array('id' => $id))->delete();
                 $this->ajaxSuccess('操作成功');
@@ -105,6 +114,9 @@ class FieldsManageController extends BaseController {
     public function upload() {
         if (IS_POST) {
             $hash = I('post.hash');
+            if( $hash == '58feec00daad5' ){
+                $this->ajaxError('关键数据，禁止操作');
+            }
             $jsonStr = I('post.jsonStr');
             $jsonStr = html_entity_decode($jsonStr);
             $data = json_decode($jsonStr, true);

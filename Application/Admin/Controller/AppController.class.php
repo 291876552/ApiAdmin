@@ -21,6 +21,9 @@ class AppController extends BaseController {
     public function edit(){
         if( IS_GET ){
             $id = I('get.id');
+            if( $id == 1 ){
+                $this->ajaxError('关键数据，禁止操作');
+            }
             if( $id ){
                 $detail = D('ApiApp')->where(array('id' => $id))->find();
                 $this->assign('detail', $detail);
@@ -59,6 +62,9 @@ class AppController extends BaseController {
     public function open(){
         if( IS_POST ){
             $id = I('post.id');
+            if( $id == 1 ){
+                $this->ajaxError('关键数据，禁止操作');
+            }
             if( $id ){
                 D('ApiApp')->open(array('id' => $id));
                 $this->ajaxSuccess('操作成功');
@@ -71,6 +77,9 @@ class AppController extends BaseController {
     public function close(){
         if( IS_POST ){
             $id = I('post.id');
+            if( $id == 1 ){
+                $this->ajaxError('关键数据，禁止操作');
+            }
             if( $id ){
                 D('ApiApp')->close(array('id' => $id));
                 $this->ajaxSuccess('操作成功');
@@ -83,6 +92,9 @@ class AppController extends BaseController {
     public function del(){
         if( IS_POST ){
             $id = I('post.id');
+            if( $id == 1 ){
+                $this->ajaxError('关键数据，禁止操作');
+            }
             if( $id ){
                 D('ApiApp')->del(array('id' => $id));
                 $this->ajaxSuccess('操作成功');
