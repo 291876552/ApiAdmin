@@ -27,7 +27,7 @@ class ApiManageController extends BaseController {
             }
         }elseif( IS_POST ) {
             $data = I('post.');
-            if( $data['id'] == 1 ){
+            if( $data['id'] <= 3 ){
                 $this->ajaxError('关键数据，禁止操作');
             }
             $res = D('ApiList')->where(array('id' => $data['id']))->save($data);
@@ -58,7 +58,7 @@ class ApiManageController extends BaseController {
     public function open() {
         if( IS_POST ) {
             $id = I('post.id');
-            if( $id == 1 ){
+            if( $id <= 3 ){
                 $this->ajaxError('关键数据，禁止操作');
             }
             if( $id ) {
@@ -73,7 +73,7 @@ class ApiManageController extends BaseController {
     public function close() {
         if( IS_POST ) {
             $id = I('post.id');
-            if( $id == 1 ){
+            if( $id <= 3 ){
                 $this->ajaxError('关键数据，禁止操作');
             }
             if( $id ) {
@@ -88,7 +88,7 @@ class ApiManageController extends BaseController {
     public function del() {
         if( IS_POST ) {
             $id = I('post.id');
-            if( $id == 1 ){
+            if( $id <= 3 ){
                 $this->ajaxError('关键数据，禁止操作');
             }
             if( $id ) {

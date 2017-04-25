@@ -56,7 +56,7 @@ class FieldsManageController extends BaseController {
     public function add() {
         if (IS_POST) {
             $data = I('post.');
-            if( $data['hash'] == '58feec00daad5' ){
+            if( $data['hash'] == '58feec00daad5' || $data['hash'] == '58fef28b2bfee' || $data['hash'] == '58fef525c55d2' ){
                 $this->ajaxError('关键数据，禁止操作');
             }
             $data['fieldName'] = $data['showName'];
@@ -76,7 +76,7 @@ class FieldsManageController extends BaseController {
         if (IS_POST) {
             $data = I('post.');
             $data['fieldName'] = $data['showName'];
-            if( $data['hash'] == '58feec00daad5' ){
+            if( $data['hash'] == '58feec00daad5' || $data['hash'] == '58fef28b2bfee' || $data['hash'] == '58fef525c55d2' ){
                 $this->ajaxError('关键数据，禁止操作');
             }
             $res = D('ApiFields')->where(array('id' => $data['id']))->save($data);
@@ -99,7 +99,7 @@ class FieldsManageController extends BaseController {
     public function del() {
         if (IS_POST) {
             $id = I('post.id');
-            if( $id <= 8 ){
+            if( $id <= 16 ){
                 $this->ajaxError('关键数据，禁止操作');
             }
             if ($id) {
@@ -114,7 +114,7 @@ class FieldsManageController extends BaseController {
     public function upload() {
         if (IS_POST) {
             $hash = I('post.hash');
-            if( $hash == '58feec00daad5' ){
+            if( $hash == '58feec00daad5' || $hash == '58fef28b2bfee' || $hash == '58fef525c55d2' ){
                 $this->ajaxError('关键数据，禁止操作');
             }
             $jsonStr = I('post.jsonStr');
