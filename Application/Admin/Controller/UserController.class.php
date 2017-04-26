@@ -26,6 +26,7 @@ class UserController extends BaseController {
 
     public function add() {
         if (IS_POST) {
+            $this->ajaxError('请使用小程序获取账号...');
             $data = I('post.');
             $has = D('ApiUser')->where(array('username' => $data['username']))->count();
             if ($has) {
