@@ -47,7 +47,7 @@
             width: 95px;
         }
         .login-box button.btn-submit{
-            width: 190px;
+            width: 165px;
         }
         .login-box .version{
             font-size: 12px;
@@ -62,19 +62,21 @@
             <h3>{:C('APP_NAME')}管理后台&nbsp;<span class="version">{:C('APP_VERSION')}</span></h3>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">用户名：</label>
+            <label class="layui-form-label">登录账号：</label>
             <div class="layui-input-inline">
-                <input type="text" name="username" required class="layui-input" lay-verify="username" placeholder="请输入用户名"/>
+                <input type="text" name="username" required class="layui-input" lay-verify="username" placeholder="请使用微信小程序获取"/>
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">密码：</label>
+            <label class="layui-form-label">登录密码：</label>
             <div class="layui-input-inline">
-                <input type="password" name="password" required class="layui-input" lay-verify="password" placeholder="请输入密码"/>
+                <input type="password" name="password" required class="layui-input" lay-verify="password" placeholder="请使用微信小程序获取"/>
             </div>
         </div>
         <div class="layui-form-item">
-            <button type="reset" class="layui-btn btn-reset layui-btn-danger" >重置</button>
+            <a href="//shang.qq.com/wpa/qunwpa?idkey=418f5fcc40296c2dfb4ec9fcfb038408ffcb74d2bbb000681aebbb01c035ccc4"
+               class="layui-btn btn-reset layui-btn-danger" ><i class="layui-icon">&#xe613;</i> 获取帮助
+            </a>
             <button type="button" class="layui-btn btn-submit" lay-submit="" lay-filter="sub">立即登录</button>
         </div>
     </form>
