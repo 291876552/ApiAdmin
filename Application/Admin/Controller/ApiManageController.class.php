@@ -32,6 +32,7 @@ class ApiManageController extends BaseController {
             }
             $res = D('ApiList')->where(array('id' => $data['id']))->save($data);
             if( $res === false ) {
+                S('ApiInfo_' . $data['hash'], 0);
                 $this->ajaxError('操作失败');
             } else {
                 $this->ajaxSuccess('添加成功');
@@ -62,6 +63,8 @@ class ApiManageController extends BaseController {
                 $this->ajaxError('关键数据，禁止操作');
             }
             if( $id ) {
+                $hash = D('ApiList')->where(array('id' => $id))->getField('hash');
+                S('ApiInfo_' . $hash, 0);
                 D('ApiList')->open(array('id' => $id));
                 $this->ajaxSuccess('操作成功');
             } else {
@@ -77,6 +80,8 @@ class ApiManageController extends BaseController {
                 $this->ajaxError('关键数据，禁止操作');
             }
             if( $id ) {
+                $hash = D('ApiList')->where(array('id' => $id))->getField('hash');
+                S('ApiInfo_' . $hash, 0);
                 D('ApiList')->close(array('id' => $id));
                 $this->ajaxSuccess('操作成功');
             } else {
@@ -92,6 +97,8 @@ class ApiManageController extends BaseController {
                 $this->ajaxError('关键数据，禁止操作');
             }
             if( $id ) {
+                $hash = D('ApiList')->where(array('id' => $id))->getField('hash');
+                S('ApiInfo_' . $hash, 0);
                 D('ApiList')->del(array('id' => $id));
                 $this->ajaxSuccess('操作成功');
             } else {

@@ -83,6 +83,11 @@ class FieldsManageController extends BaseController {
             if ($res === false) {
                 $this->ajaxError('操作失败');
             } else {
+                if ($data['type'] == 0) {
+                    S('ApiRequest_' . $data['hash'], 0);
+                } else {
+                    S('ApiResponse_' . $data['hash'], 0);
+                }
                 $this->ajaxSuccess('添加成功');
             }
         } else {
@@ -103,6 +108,12 @@ class FieldsManageController extends BaseController {
                 $this->ajaxError('关键数据，禁止操作');
             }
             if ($id) {
+                $detail = D('ApiFields')->where(array('id' => $id))->find();
+                if ($detail['type'] == 0) {
+                    S('ApiRequest_' . $detail['hash'], 0);
+                } else {
+                    S('ApiResponse_' . $detail['hash'], 0);
+                }
                 D('ApiFields')->where(array('id' => $id))->delete();
                 $this->ajaxSuccess('操作成功');
             } else {
@@ -117,6 +128,7 @@ class FieldsManageController extends BaseController {
             if( $hash == '58feec00daad5' || $hash == '58fef28b2bfee' || $hash == '58fef525c55d2' ){
                 $this->ajaxError('关键数据，禁止操作');
             }
+            $type = I('post.type');
             $jsonStr = I('post.jsonStr');
             $jsonStr = html_entity_decode($jsonStr);
             $data = json_decode($jsonStr, true);
@@ -124,7 +136,7 @@ class FieldsManageController extends BaseController {
             $this->handle($data['data'], $dataArr);
             $old = D('ApiFields')->where(array(
                 'hash' => $hash,
-                'type' => I('post.type')
+                'type' => $type
             ))->select();
             $oldArr = array_column($old, 'showName');
             $newArr = array_column($dataArr, 'showName');
@@ -142,6 +154,12 @@ class FieldsManageController extends BaseController {
                 }
                 D('ApiFields')->addAll($addData);
             }
+            if ($type) {
+                S('ApiRequest_' . $hash, 0);
+            } else {
+                S('ApiResponse_' . $hash, 0);
+            }
+            S('ApiReturnType_' . $hash, 0);
             $this->ajaxSuccess('操作成功');
         } else {
             $this->display();
